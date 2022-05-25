@@ -38,14 +38,14 @@ def getType(pokemondata):
 def getPokemons(inputs):
     
     
-    if str(bool(inputs)) == "True":
+    if str(inputs) == "True":
         request = requests.get("https://pokeapi.co/api/v2/pokemon?limit=10&offset=0")
-
+        print("10 pokemon")
     else:
-        
+        print("buscando pokemon")
         request = requests.get("https://pokeapi.co/api/v2/pokemon/{}".format(inputs.lower()))
         if request.status_code == 404:   
-            
+            print("pokemon não encontrado")
             raise ValueError("Pokemon não Encontrado")         
 
     json_response = request.json()
@@ -60,7 +60,7 @@ def main(inputs):
         dw = csv.DictWriter(file, delimiter=',', fieldnames=headerList)
         dw.writeheader()
     
-    if str(bool(inputs)) == "True":
+    if str(inputs) == "True":
         for pokemon in pokemondata['results']:
             request = requests.get(pokemon['url'])
             json_response = request.json()
@@ -100,7 +100,7 @@ def parseArguments():
     parser = argparse.ArgumentParser()
 
     parser.add_argument("-pokemon", help="Nome do Pokemon", default=False)
-    parser.add_argument("-poke10", help="Obter 10 Pokemons", default=False)
+    parser.add_argument("-poke10", help="Obter 10 Pokemons", default=False, type=bool)
 
 
     args = parser.parse_args()
@@ -127,7 +127,7 @@ if __name__ == '__main__':
 
     args = parseArguments()
     inputs = defineInputs(**args.__dict__)
-    print(inputs)
+    
 
     main(inputs)
     

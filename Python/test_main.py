@@ -28,6 +28,8 @@ class TestPokedex(unittest.TestCase):
         else:
             type_key = False
 
+        print()
+
         self.assertEqual(ability_key, True, "A chave ability não existe")
         self.assertEqual(type_key, True, "A chave type não existe")
 
