@@ -54,9 +54,18 @@ As dependecia estão no arquivo [requirements.txt](Python/requirements.txt)
 
 Acesse o diretorio Python e execute o arquivo main.py
 
-Exemplo:
+Exemplos:
 ```Bash
+# o script vai solicitar o nome do pokemon para o user
 python3 main.py
+```
+```Bash
+# passando o nome do pokemon como argumento
+python3 main.py -pokemon=pikachu
+```
+```Bash
+# Forçando o script a obter os 10 pokemons
+python3 main.py -poke10=true
 ```
 Durante a execução sera pedido o nome de um pokemon como input.
 Caso o usuario não informe o nome de um pokemon o script buscara 10 pokemons na api `pokeapi.co`
