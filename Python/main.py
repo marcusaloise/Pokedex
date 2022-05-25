@@ -1,8 +1,11 @@
 #!/bin/python3
+from curses import def_prog_mode
+import string
 import requests
 import json
 import csv
 import pandas as pd
+import argparse
 
 
 filename = 'Pokemons.csv'
@@ -32,31 +35,32 @@ def getType(pokemondata):
     return type_list
 
 
-def getPokemons(qual_pokemon):
-    if not qual_pokemon:
+def getPokemons(inputs):
+    
+    
+    if str(inputs) == "True":
         request = requests.get("https://pokeapi.co/api/v2/pokemon?limit=10&offset=0")
-
+        print("10 pokemon")
     else:
-        
-        request = requests.get("https://pokeapi.co/api/v2/pokemon/{}".format(qual_pokemon.lower()))
+        print("buscando pokemon")
+        request = requests.get("https://pokeapi.co/api/v2/pokemon/{}".format(inputs.lower()))
         if request.status_code == 404:   
-            
+            print("pokemon não encontrado")
             raise ValueError("Pokemon não Encontrado")         
 
     json_response = request.json()
 
     return json_response
 
-def main():
+def main(inputs):
 
-    qual_pokemon = input ('Informe o nome do pokemon para pesquisa ou aperte enter para obter 10 pokemons.')
-    pokemondata = getPokemons(qual_pokemon)
+    pokemondata = getPokemons(inputs)
     headerList = ['Name', 'Ability', 'Type']
     with open(filename, 'a', newline="") as file:
         dw = csv.DictWriter(file, delimiter=',', fieldnames=headerList)
         dw.writeheader()
     
-    if not qual_pokemon:
+    if str(inputs) == "True":
         for pokemon in pokemondata['results']:
             request = requests.get(pokemon['url'])
             json_response = request.json()
@@ -76,7 +80,7 @@ def main():
             type_list =  ' '.join(getType(pokemondata))
 
 
-            csv_data = [qual_pokemon.lower() + ',' + ability_list + ',' + type_list]
+            csv_data = [inputs.lower() + ',' + ability_list + ',' + type_list]
 
             print(csv_data)
 
@@ -91,8 +95,39 @@ def main():
     
     data.to_csv("Pokemons.csv", index=False)
 
+def parseArguments():
+
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("-pokemon", help="Nome do Pokemon", default=False)
+    parser.add_argument("-poke10", help="Obter 10 Pokemons", default=False, type=bool)
+
+
+    args = parser.parse_args()
+
+    return args
+
+
+def defineInputs(**kwargs):
+    
+    if not kwargs['pokemon'] and not kwargs['poke10']:
+        qual_pokemon = input ('Informe o nome do pokemon para pesquisa ou aperte enter para obter 10 pokemons.')
+        if not qual_pokemon:
+            return True    
+        else:    
+            return qual_pokemon
+    if kwargs['pokemon']:
+        return kwargs['pokemon']
+    else:
+        return kwargs['poke10']
+        
 
 
 if __name__ == '__main__':
-    main()
+
+    args = parseArguments()
+    inputs = defineInputs(**args.__dict__)
+    
+
+    main(inputs)
     
