@@ -1,0 +1,14 @@
+# Changelog
+Todas as mudanças realizadas nesse projeto devem ser colocadas aqui.
+
+Seguir o padrão do [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+E preservar o versionamento semantico conforme [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+
+## [0.0.1] - 2022-05-24
+### Added
+
+- Readme, changelog, todolist
+- Implementação da função getAbilities, getType, getPokemons
+- Main recendo input do user e gerando arquivo .csv
+- Testes unitarios test_getPokemon, test_getType, test_getAbilities.
