@@ -5,6 +5,11 @@ Seguir o padrão do [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 E preservar o versionamento semantico conforme [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [0.0.4] - 2022-05-25
+### Added
+
+- Foi criado a implementação ansible, mas ela não se encontra 100% funcional devido a um conflito no tratamento de erro.
+
 ## [0.0.3] - 2022-05-25
 ### Added
 - Foi adicionado o teste se o arquivo .csv foi criado e se as colunas dentro dele estão corretas
