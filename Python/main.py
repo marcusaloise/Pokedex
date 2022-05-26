@@ -11,17 +11,11 @@ import argparse
 filename = 'Pokemons.csv'
 csv_data = [] #[['bulbasaur', 'overgrow, chlorophyll', 'grass, poison']]
 
-f = open(filename, "w+")
-f.close()
-
 def getAbilities(pokemondata):
     ability_list = []
     abilities = pokemondata['abilities']       
     for ability in abilities:
         ability_list.append(ability['ability']['name'])
-
-
-    
     return ability_list
 
 
@@ -40,12 +34,12 @@ def getPokemons(inputs):
     
     if str(inputs) == "True":
         request = requests.get("https://pokeapi.co/api/v2/pokemon?limit=10&offset=0")
-        print("10 pokemon")
+        
     else:
-        print("buscando pokemon")
+        
         request = requests.get("https://pokeapi.co/api/v2/pokemon/{}".format(inputs.lower()))
         if request.status_code == 404:   
-            print("pokemon não encontrado")
+            
             raise ValueError("Pokemon não Encontrado")         
 
     json_response = request.json()
@@ -53,6 +47,10 @@ def getPokemons(inputs):
     return json_response
 
 def main(inputs):
+
+
+    f = open(filename, "w+")
+    f.close()
 
     pokemondata = getPokemons(inputs)
     headerList = ['Name', 'Ability', 'Type']
@@ -79,10 +77,7 @@ def main(inputs):
             ability_list = ' '.join(getAbilities(pokemondata))
             type_list =  ' '.join(getType(pokemondata))
 
-
-            csv_data = [inputs.lower() + ',' + ability_list + ',' + type_list]
-
-            print(csv_data)
+            csv_data = [inputs.lower() + ',' + ability_list + ',' + type_list]        
 
             with open(filename, 'a', newline="") as file:
                 csvwriter = csv.writer(file, quoting=csv.QUOTE_NONE, escapechar=' ')
@@ -131,3 +126,10 @@ if __name__ == '__main__':
 
     main(inputs)
     
+## Muda a , para ;
+
+# text = open("Pokemons.csv", "r")
+# text = ''.join([i for i in text]) 
+# text = text.replace(",", ";") 
+# x = open("Pokemons.csv","w")
+# x.writelines(text)
