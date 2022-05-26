@@ -9,11 +9,13 @@
       pokedex:
         pokemon_name: pikachu
         csv_folder_path: /tmp/
+        changed_when: True
 
     - name: Obtendo os 10 pokemon da API e gravando em /var/lib/Pokemon.csv
       pokedex:
         poke10: True
         csv_folder_path: /tmp/
+        changed_when: True
 
 
 
