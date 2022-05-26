@@ -5,9 +5,9 @@ Seguir o padrão do [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 E preservar o versionamento semantico conforme [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [0.0.3] - 2022-05-24
+## [0.0.3] - 2022-05-25
 ### Added
-- Foi finalizado o teste se o arquivo .csv foi criado e se as colunas dentro dele estão corretas
+- Foi adicionado o teste se o arquivo .csv foi criado e se as colunas dentro dele estão corretas
 
 ## [0.0.2] - 2022-05-24
 ### Added
