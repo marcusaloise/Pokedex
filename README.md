@@ -98,3 +98,19 @@ blastoise ,torrent  rain-dish ,water
 O loop "while read" não permite que as variaveis dentro dele sejam exportadas para uso externo.
 
 Por esse motivo essa implementação ficou incompleta. até que eu encontre uma solução para essa limitação do bash
+
+
+
+# Implementação ansible
+
+## Dependencias
+
+- ansible
+- pandas
+- requests 
+- argparse
+
+## Problemas no tratamento de erro
+O código funciona perfeitamente mas infelizmente está dando algum tipo de conflito na hora do tratamento de erro.
+
+Por esse motivo acabou ficando "incompleto".
