@@ -80,7 +80,6 @@ def getType(pokemondata):
 
 def getPokemons(inputs):
     
-    
     if str(inputs) == "True":
         request = requests.get("https://pokeapi.co/api/v2/pokemon?limit=10&offset=0")
         
@@ -96,30 +95,17 @@ def getPokemons(inputs):
 
     return json_response
 
-def parseArguments():
-    
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument("-pokemon", help="Nome do Pokemon", default=False)
-    parser.add_argument("-poke10", help="Obter 10 Pokemons", default=False, type=bool)
-
-
-    args = parser.parse_args()
-
-    return args
-
 
 def defineInputs(**kwargs):
-    pokemon_name_bool = ""
+    
 
-    if kwargs['pokemon_name'] == "False":
-        pokemon_name_bool = False
-
-    if not pokemon_name_bool:
-        return "True"    
-    else:    
+    if kwargs['poke10'] and kwargs['pokemon_name'] == 'False':
+        return True
+    else:
         return kwargs['pokemon_name']
-     
+
+
+
 
 from ansible.module_utils.basic import AnsibleModule
 
@@ -144,16 +130,10 @@ def main():
         original_message='',
         message=''
     )
+
     pokemon_name = module.params['pokemon_name']
 
-
-
-    print(module.params)
-
     inputs = defineInputs(**module.params)
-
-    print(inputs)
-    print(type(inputs))
 
 
     filename = module.params['csv_folder_path'] + 'Pokemons.csv'
