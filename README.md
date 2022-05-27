@@ -101,7 +101,7 @@ Por esse motivo essa implementação ficou incompleta. até que eu encontre uma 
 
 
 
-# Implementação ansible
+# Implementação Ansible
 
 ## Dependencias
 
@@ -110,7 +110,33 @@ Por esse motivo essa implementação ficou incompleta. até que eu encontre uma 
 - requests 
 - argparse
 
-## Problemas no tratamento de erro
-O código funciona perfeitamente mas infelizmente está dando algum tipo de conflito na hora do tratamento de erro.
+## como usar
 
-Por esse motivo acabou ficando "incompleto".
+Acesse o diretorio Ansible e execute o Playbook
+
+Exemplo:
+```bash
+ansible-playbook -i inventory site.yml 
+```
+
+Durante a execução o Ansible vai buscar dados do pokemon Pikachu e outros 10 pokemons na API `pokeapi.co`, para inserir e um arquivo .csv e ordenar por habilidade.
+Os dados que serão coletados são nome, Habilidade e tipo.
+
+
+Exemplo Pokemon.csv:
+```csv
+Name,Ability,Type
+charmander ,blaze  solar-power ,fire
+charmeleon ,blaze  solar-power ,fire
+charizard ,blaze  solar-power ,fire  flying
+bulbasaur ,overgrow  chlorophyll ,grass  poison
+ivysaur ,overgrow  chlorophyll ,grass  poison
+venusaur ,overgrow  chlorophyll ,grass  poison
+caterpie ,shield-dust  run-away ,bug
+squirtle ,torrent  rain-dish ,water
+wartortle ,torrent  rain-dish ,water
+blastoise ,torrent  rain-dish ,water
+
+```
+
+Obs: os arquivos serão armazenados em /tmp/
