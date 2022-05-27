@@ -7,15 +7,15 @@
   tasks:
     - name: Buscando informações do Pikachu e gravando em /tmp/Pokemon.csv
       pokedex:
-        pokemon_name: pikachu
+        pokemon_name: 'pikachu'
         csv_folder_path: /tmp/
-        changed_when: True
+       
 
-    - name: Obtendo os 10 pokemon da API e gravando em /var/lib/Pokemon.csv
+    - name: Obtendo os 10 pokemon da API e gravando em /tmp/pokemon10Pokemon.csv
       pokedex:
         poke10: True
-        csv_folder_path: /tmp/
-        changed_when: True
+        csv_folder_path: /tmp/pokemon10
+     
 
 
 
